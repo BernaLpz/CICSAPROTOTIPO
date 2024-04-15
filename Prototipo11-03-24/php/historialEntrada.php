@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
         echo "<tr>";
         echo "<td>" . $row["IdHerramienta"] . "</td>";
         echo "<td>" . obtenerNombreHerramienta($row["IdHerramienta"], $conn) . "</td>";
-        echo "<td>" . $row["cantidad"] . "</td>";
+        echo "<td>" . $row["Cantidad"] . "</td>";
         echo "<td>" . $row["IdEmpleado"] . "</td>";
         echo "<td>" . $row["NombreEmpleado"] . "</td>";
         echo "<td>" . date("h:i A", strtotime($row["Hora"])) . "</td>"; // Formato de hora

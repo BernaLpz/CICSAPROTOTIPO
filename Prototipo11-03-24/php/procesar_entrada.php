@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hora = trim($_POST['hora']);
     $fecha = trim($_POST['fecha']);
     $cantidad = trim($_POST['cantidad']);
+    
 
     // Validar los datos
     if (empty($idHerramienta)|| empty($idEmpleado) || empty($nombreEmpleado) || empty($hora) || empty($fecha) || empty($cantidad)) {
@@ -40,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../entradas.php?error=herramientanoencontrada");
         exit();
     }
-
+    $cantidadDisponible = $rowVerificar['Cantidad'];
     // Calcular la nueva cantidad en el inventario
     $nuevaCantidad = $cantidadDisponible + $cantidad;
 

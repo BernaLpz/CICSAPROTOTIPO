@@ -31,8 +31,8 @@ $resultado = $conn->query($sql);
                 <div class="col-sm-6">
                     <button class="btn btn-primary" onclick="mostrarFormulario()">Agregar Trabajador</button>
                 </div>
-                <div class="col-sm-6">
-                    <button class="btn btn-primary float-end" onclick="mostrarFormularioEditar()">Editar Trabajador</button>
+                <div class="col-sm-6" hidden>
+                    <button class="btn btn-primary float-end" onclick="mostrarFormularioEditar()" hidden>Editar Trabajador</button>
                 </div>
                 
             </div>
@@ -70,47 +70,7 @@ $resultado = $conn->query($sql);
             </div>
 
             <!-- Formulario para editar un trabajador -->
-<div id="formularioeditar" style="display: none;">
-    <div class="card">
-        <div class="card-body">
-            <h3 class="card-title text-center">Editar Trabajador</h3>
-            <form action="php/procesar_editar_trabajador.php" method="POST">
-                <div class="mb-3">
-                    <label for="id_trabajador">Selecciona un trabajador:</label>
-                    <select class="form-select" id="id_trabajador" onchange="cargarDatosTrabajador()">
-                        <option value="">Selecciona un trabajador</option>
-                        <?php
-                        // Mostrar opciones para cada trabajador
-                        if ($resultado->num_rows > 0) {
-                            while ($fila = $resultado->fetch_assoc()) {
-                                echo "<option value='" . $fila['id_empleado'] . "'>" . $fila['nombre'] . " " . $fila['apellido'] . "</option>";
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-                <!-- Campos para editar los datos del trabajador -->
-                <div class="mb-3">
-                    <label for="id_empleado">ID de Empleado:</label>
-                <input type="text"  class ="form-control" id="form_id_empleado" name="id_empleado" readonly>
-                </div>
-                <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" id="form_nombre" name="nombre">
-                </div>
-                <div class="mb-3">
-                    <label for="apellido" class="form-label">Apellido:</label>
-                    <input type="text" class="form-control" id="form_apellido" name="apellido">
-                </div>
-                <div class="mb-3">
-                    <label for="puesto" class="form-label">Puesto:</label>
-                    <input type="text" class="form-control" id="form_puesto" name="puesto">
-                </div>
-                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-            </form>
-        </div>
-    </div>
-</div>
+
 
 <script>
     // Función para cargar los datos del trabajador seleccionado
@@ -167,6 +127,50 @@ $resultado = $conn->query($sql);
         document.getElementById("form_id_empleado").value = id_trabajadorEliminar;
     }
 </script>
+
+
+
+<div id="formularioeditar" style="display: none;">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title text-center">Editar Trabajador</h3>
+            <form action="php/procesar_editar_trabajador.php" method="POST">
+                <div class="mb-3">
+                    <label for="id_trabajador">Selecciona un trabajador:</label>
+                    <select class="form-select" id="id_trabajador" onchange="cargarDatosTrabajador()">
+                        <option value="">Selecciona un trabajador</option>
+                        <?php
+                        // Mostrar opciones para cada trabajador
+                        if ($resultado->num_rows > 0) {
+                            while ($fila = $resultado->fetch_assoc()) {
+                                echo "<option value='" . $fila['id_empleado'] . "'>" . $fila['nombre'] . " " . $fila['apellido'] . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                </div>
+                <!-- Campos para editar los datos del trabajador -->
+                <div class="mb-3">
+                    <label for="id_empleado">ID de Empleado:</label>
+                <input type="text"  class ="form-control" id="form_id_empleado" name="id_empleado" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="form_nombre" name="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="apellido" class="form-label">Apellido:</label>
+                    <input type="text" class="form-control" id="form_apellido" name="apellido">
+                </div>
+                <div class="mb-3">
+                    <label for="puesto" class="form-label">Puesto:</label>
+                    <input type="text" class="form-control" id="form_puesto" name="puesto">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 
